@@ -154,10 +154,18 @@ def manual_sgd_step(model, learning_rate, momentum, weight_decay, momentum_buffe
   Scales the original tensors elements by `f`, thus mutating the original tensot.
 
 ### D. Briefly explain the purpose of adding momentum to the gradient descent algorithm.
+Momentum is a tool we can use in training as an attempt to glide across plateaus.   
+![Drawing of a plateau](./docs/plateau.png)
+Without momentum, we would reach the first plateau, but not any further.  
+The hope is that momentum can help carry the progress across such plateaus into, hopefully, more progress.
+
+*Look at that drawing!*
 
 ### E. Briefly explain the purpose of adding regularization to the gradient descent algorithm.
+Regularization is a way to penalice large weights. The idea is that larger weights indicates a more complex model. We want simple models, so it serves as a counterweight pushing weights towards zero.  
+In our case, we used L2 regularization, wich is essentually reducing the weigths by some fixed scale every optimization step. (By fixed scale, I mean we multiply the weights by a fixed number).
 
 ### F. Report the different parameters used in section 3, question 8., the selected parameters in question 9. as well as the evaluation of your selected model.
 
 ### G. Comment your results. 
-In case you do not get expected results, try to give potential reasons that would explain why your code does not work and/or your results differ.
+**In case you do not get expected results, try to give potential reasons that would explain why your code does not work and/or your results differ.**
