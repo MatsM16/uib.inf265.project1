@@ -3,10 +3,9 @@ Group: **Project 1 18**
 Students:
 - **Mats Omland Dyrøy (mdy020)**
 - **Linus Krystad Raaen (zec018)**
-  
+
 ---
-  
-Content:
+
 - [Summary](#1-summary)
 - [Questions](#2-questions-and-answers)
   - [A. Which PyTorch method(s) correspond to the task described in section 2?](#a-which-pytorch-methods-correspond-to-the-task-described-in-section-2)
@@ -16,7 +15,6 @@ Content:
   - [E. Briefly explain the purpose of adding regularization to the gradient descent algorithm.](#e-briefly-explain-the-purpose-of-adding-regularization-to-the-gradient-descent-algorithm)
   - [F. Report the different parameters used in section 3, question 8., the selected parameters in question 9. as well as the evaluation of your selected model.](#f-report-the-different-parameters-used-in-section-3-question-8-the-selected-parameters-in-question-9-as-well-as-the-evaluation-of-your-selected-model)
   - [G. Comment your results.](#g-comment-your-results)
----
 
 ## 1. Summary
 
@@ -166,6 +164,49 @@ Regularization is a way to penalice large weights. The idea is that larger weigh
 In our case, we used L2 regularization, wich is essentually reducing the weigths by some fixed scale every optimization step. (By fixed scale, I mean we multiply the weights by a fixed number).
 
 ### F. Report the different parameters used in section 3, question 8., the selected parameters in question 9. as well as the evaluation of your selected model.
+
+#### Global parameters:
+| Parameter | Value |
+| --------- | ----- |
+| Batch size | `256` |
+| Epoch count | `30` |
+| Loss function | `CrossEntropyLoss` |
+| Random seed | `123` |
+
+These global parameters are not very creative and stolen from the `gradient_descent_outout.txt`.
+
+#### Model parameters
+| No | Learning rate | Momentum | Weight decay | Training accuracy | Validation accuracy |
+|:-: | -------- | ------- | --------- | -------- | -------- |
+|  1 | $ 0.01 $ | $ 0.0 $ | $ 0.000 $ | $ 83 $ % | $ 80 $ % |
+|  2 | $ 0.10 $ | $ 0.0 $ | $ 0.000 $ | $ 89 $ % | $ 79 $ % |
+|  3 | $ 0.01 $ | $ 0.0 $ | $ 0.010 $ | $ 82 $ % | $ 79 $ % |
+|  4 | $ 0.01 $ | $ 0.9 $ | $ 0.000 $ | $ 94 $ % | $ 84 $ % |
+|  5 | $ 0.01 $ | $ 0.9 $ | $ 0.010 $ | $ 94 $ % | $ 84 $ % |
+|  6 | $ 0.01 $ | $ 0.9 $ | $ 0.001 $ | $ 94 $ % | $ 85 $ % |
+|  7 | $ 0.01 $ | $ 0.8 $ | $ 0.010 $ | $ 96 $ % | $ 84 $ % |
+|  8 | $ 0.10 $ | $ 0.9 $ | $ 0.010 $ | $ 87 $ % | $ 81 $ % |
+|  9 | $ 0.10 $ | $ 0.9 $ | $ 0.001 $ | $ 94 $ % | $ 82 $ % |
+| 10 | $ 0.10 $ | $ 0.9 $ | $ 0.010 $ | $ 87 $ % | $ 82 $ % |
+| 11 | $ 0.90 $ | $ 0.9 $ | $ 0.010 $ | $ 50 $ % | $ 51 $ % |
+
+The model that performed best on the validation set was `No 6`.  
+Because we selected the best model at the validation set, we have an inherit bias for good performance on that dataset.  
+Therefore, to get an unbiased performance estimate, we must measure the performance of `No 6` on another completely unseen dataset.  
+
+#### Best model parameters (No 6)
+| Parameter     | Value     |
+| ------------- | --------- |
+| Learning rate | $ 0.01 $  |
+| Momentum      | $ 0.9 $   |
+| Weight decay  | $ 0.001 $ |
+
+#### Best model accuracy (No 6)
+| Dataset    | Accuracy |
+| ---------- | -------- |
+| Training   | $ 94 $ % |
+| Validation | $ 85 $ % |
+| Test       | $ 85 $ % |
 
 ### G. Comment your results. 
 **In case you do not get expected results, try to give potential reasons that would explain why your code does not work and/or your results differ.**
