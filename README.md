@@ -59,7 +59,7 @@ The description of our approach will roughly follow the tasks in section `3` in 
 
 #### Task 1 to 3
 
-The first hirdle was loading the dataset, as we kept getting type errors. We also somehow missed the hint abount `torch.set_default_dtype(torch.double)`, so we ended up with a different approach achiving the same result:
+The first hurdle was loading the dataset, as we kept getting type errors. We also somehow missed the hint abount `torch.set_default_dtype(torch.double)`, so we ended up with a different approach achiving the same result:
 ```python
 transform = transforms.Compose([
     transforms.ToTensor(),
@@ -73,7 +73,7 @@ transform = transforms.Compose([
 We just added the conversion to our dataset transform instead.
 
 Writing the `train`-function was trivial with access to all the bells and whistles in `PyTorch`.  
-If we remove the debuging code used to sanity-check that the loss was going down, the function becomes very simple:
+If we remove the debugging code used to sanity-check that the loss was going down, the function becomes very simple:
 ```python
 def train(epoch_count, optimizer, model, loss_function, train_loader):
     for epoch in range(epoch_count):
