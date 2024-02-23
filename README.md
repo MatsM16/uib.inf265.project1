@@ -355,3 +355,20 @@ Therefore, to get an unbiased performance estimate, we must measure the performa
 
 ### G. Comment your results. 
 **In case you do not get expected results, try to give potential reasons that would explain why your code does not work and/or your results differ.**
+
+A quick google search on the dataset tells us that estimated human performance if roughfly 96% accuracy. <sup>[[medium](https://franky07724-57962.medium.com/once-upon-a-time-in-cifar-10-c26bb056b4ce)]</sup>  
+Therefore, for some reason, we were expecting an accuracy of around or just below these numbers, but we struggled to get accuracies above the mid 80-s.
+
+I suspect we could have gotten way better results using convolutions as that would implicitly preserve the significance of neighboring pixels.
+
+We also had one model `No 11`, which performed susprisingly badly with a validation accuracy of `51%` (which somehow is better than the training accuracy).  
+Looking at the logs, we suspect an exploading gradient:
+```
+Epoch 1 | Training loss: 11.48756237417679
+Epoch 5 | Training loss: nan
+Epoch 10 | Training loss: nan
+Epoch 15 | Training loss: nan
+Epoch 20 | Training loss: nan
+Epoch 25 | Training loss: nan
+Epoch 30 | Training loss: nan
+```
